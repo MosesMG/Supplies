@@ -1,0 +1,209 @@
+@font-face {
+    font-family: 'Alex';
+    src: url('../fonts/AlexandriaFLF.ttf');
+}
+@font-face {
+    font-family: 'Calligraphy';
+    src: url('../fonts/CalligraphyFLF.ttf');
+}
+@font-face {
+    font-family: 'Octin';
+    src: url('../fonts/octin_sports_rg.ttf');
+}
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat-VariableFont.ttf');
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background: url('../images/belle-composit.jpg') no-repeat fixed;
+    background-size: cover;
+    /* padding: 10px; */
+}
+.about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    padding: 125px 0 90px;
+}
+.about h1 {
+    font-family: Calligraphy;
+    font-size: 75px;
+    letter-spacing: 2px;
+    text-align: center;
+    /* margin: 50px auto; */
+}
+.apropos {
+    display: flex;
+    justify-content: space-around;
+    /* align-items: center; */
+    gap: 10px;
+    backdrop-filter: grayscale(50%);
+    padding: 50px 5px;
+}
+.propostxt {
+    max-width: 550px;
+    height: max-content;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+.propostxt p {
+    text-align: justify;
+    color: #fff;
+    font-family: Montserrat;
+    font-size: 20px;
+    line-height: 35px;
+    padding: 50px;
+}
+.apropos img {
+    width: 290px;
+    animation: turn 5s  ;
+}
+@keyframes turn {
+    from {
+        transform: scale(0.8) rotate3d(0, 1, 0, 1turn);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+.contact {
+    padding: 50px 0;
+    display: flex;
+    justify-content: space-around;
+}
+.line {
+    width: 3px;
+    background-color: #fff;
+}
+.message {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    backdrop-filter: blur(10px);
+    height: max-content;
+    padding: 25px;
+}
+.message p {
+    font-family: Octin;
+    text-align: center;
+    font-size: 22px;
+    letter-spacing: 1px;
+    color: #fff;
+}
+.message form {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+form div {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+form label {
+    font-family: Montserrat;
+    font-weight: 600;
+}
+form input, form textarea {
+    background: transparent;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    padding: 2px 5px;
+    color: #fff;
+    font-size: 16px;
+    letter-spacing: 1px;
+    transition: 0.5s;
+}
+form input {
+    height: 32px;
+}
+form input:hover, form textarea:hover {
+    box-shadow: 0 0 25px #fff;
+}
+form input:focus, form textarea:focus {
+    box-shadow: 0 0 25px gray;
+}
+form button {
+    width: max-content;
+    display: flex;
+    align-self: center;
+    padding: 7px 25px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: Octin;
+    letter-spacing: 1px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: 0.4s;
+}
+form button:hover {
+    background: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    transform: scale(1.05, 1);
+    box-shadow: 0 0 25px #fff;
+}
+
+.iconTop {
+    position: fixed;
+    inset: auto 40px 40px auto;
+    width: 55px;
+    padding: 13px;
+    border-radius: 50%;
+    background: rgba(206, 36, 109, 0.8);
+    cursor: pointer;
+}
+
+
+@media screen and (max-width: 1100px) {
+    .line {
+        display: none;
+    }
+    .contact {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 75px;
+    }
+}
+@media screen and (max-width: 850px) {
+    .propostxt {
+        margin: auto;
+    }
+    .apropos {
+        gap: 0;
+    }
+    .apropos img {
+        position: absolute;
+        left: 30%;
+        opacity: 0.15;
+    }
+}
+@media screen and (max-width: 600px) {
+    .map {
+        width: 400px;
+    }
+    .message form {
+        width: 325px;
+    }
+    .apropos {
+        align-items: center;
+    }
+    .apropos img {
+        display: none;
+    }
+}
+@media screen and (max-width: 400px) {
+    .map {
+        width: 370px;
+    }
+    .message form {
+        width: 300px;
+    }
+}

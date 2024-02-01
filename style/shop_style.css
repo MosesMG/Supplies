@@ -1,0 +1,417 @@
+@font-face {
+    font-family: 'Alex';
+    src: url('../fonts/AlexandriaFLF.ttf');
+}
+@font-face {
+    font-family: 'Calligraphy';
+    src: url('../fonts/CalligraphyFLF.ttf');
+}
+@font-face {
+    font-family: 'Octin';
+    src: url('../fonts/octin_sports_rg.ttf');
+}
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat-VariableFont.ttf');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header {
+    background: url('../images/arrangement.jpg') no-repeat;
+    background-position: 10% 30%;
+    background-size: cover;
+    z-index: -5;
+    display: flex;
+    flex-direction: column;
+    /* overflow-x: hidden; */
+}
+
+.descTop {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+    margin: 110px auto;
+    color: #fff;
+    overflow-x: hidden;
+}
+@keyframes zommer {
+    0%, 25% {
+        transform: scale(1.1);
+    }
+    35%, 40% {
+        text-shadow: 0 0 30px #fff;
+    }
+    50%, 75% {
+        transform: scale(0.95);
+    }
+    85%, 90% {
+        text-shadow: 0 0 30px #fff;
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+.descTop h2 {
+    text-align: center;
+    font-family: Calligraphy;
+    font-size: 60px;
+    letter-spacing: 1px;
+    animation: zommer 3s linear infinite;
+}
+@keyframes runner {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+.descTop p {
+    font-family: Montserrat;
+    letter-spacing: 1px;
+    font-size: 30px;
+    font-weight: 500;
+    max-width: max-content;
+    animation: runner 18s linear alternate-reverse infinite;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    align-items: center;
+    padding: 100px 15px;
+}
+
+.shopTop {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    list-style: none;
+}
+.shopTop li {
+    color: #000;
+    font-family: Calligraphy;
+    font-size: 45px;
+    cursor: pointer;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    width: 200px;
+    height: 58px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+}
+.shopTop li:hover {
+    transform: scale(0.95);
+    background-color: #1F2039;
+    color: #fff;
+}
+/* .shopTop li::after {
+    display: block;
+    content: '';
+    height: 3px;
+    background: #333;
+    margin: auto;
+    width: 10%;
+    opacity: 0.1;
+    transition: 0.3s;
+}
+.shopTop li:hover::after {
+    width: 90%;
+    opacity: 1;
+} */
+
+.enonce {
+    /* display: flex; */
+    margin: 0 0 100px;
+}
+
+@keyframes opaque {
+    from {
+        opacity: 0.1;
+        transform: scale(0.3);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.enonce p {
+    font-family: Montserrat;
+    font-weight: 600;
+    font-size: 30px;
+    text-align: center;
+    animation: opaque 1.2s linear;
+}
+
+.catVoiture {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 75px;
+}
+
+.uneVoiture {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    padding: 0 0 10px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.uneVoiture:hover {
+    transform: scale(1.1, 1.05);
+    box-shadow: 0 0 10px gray,
+                0 0 30px #000000b3;
+}
+
+.laCaisse img {
+    width: 320px;
+    height: auto;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+}
+
+.second {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    margin: 0 0 7px;
+}
+
+.second h2 {
+    font-family: Alex;
+    letter-spacing: 1px;
+}
+
+.lesbuttons {
+    display: none;
+    gap: 15px;
+}
+
+.lesbuttons * {
+    width: 30px;
+    border: 1px solid #000;
+}
+
+.lesbuttons img {
+    width: 20px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.chiffre {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 35px;
+    color: #000;
+    font-family: Octin;
+    width: 60px;
+}
+
+.plus:active, .moins:active {
+    transform: scale(0.9);
+}
+
+.leprix {
+    font-family: Octin;
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: #a00;
+}
+
+.second a {
+    padding: 5px 20px;
+    font-weight: 500;
+    font-family: Montserrat;
+    color: #000;
+    font-size: 20px;
+    border-radius: 10px;
+    border: 1px solid gray;
+    /* background-color: gray; */
+    transition: 0.5s;
+}
+
+.second a:hover {
+    background-color: gray;
+    color: #fff;
+}
+
+.uneVoiture .fermer, .uneMode .fermer, .unElectro .fermer {
+    font-family: Montserrat;
+    display: none;
+}
+
+.iconTop {
+    position: fixed;
+    inset: auto 40px 40px auto;
+    width: 55px;
+    padding: 13px;
+    border-radius: 50%;
+    background: rgba(206, 36, 109, 0.8);
+    cursor: pointer;
+}
+
+.uneVoiture.popUp, .uneMode.popUp, .unElectro.popUp {
+    position: absolute;
+    z-index: 5;
+    height: 75vh;
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    gap: 150px;
+    /* flex-wrap: wrap; */
+    background: rgba(250, 250, 250, 0.9);
+    transition: 0.5s ease-out;
+}
+
+.popUp:hover {
+    transform: none;
+}
+
+.uneVoiture.popUp .fermer, .uneMode.popUp .fermer, .unElectro.popUp .fermer {
+    display: block;
+    opacity: 0.5;
+}
+
+/* .uneVoiture.popUp .laCaisse {
+    height: 100%;
+    display: flex;
+    align-items: center;
+} */
+
+.uneVoiture.popUp .laCaisse img, .uneMode.popUp .imgMode img, .unElectro.popUp .imgElectro img {
+    width: 500px;
+    min-width: 350px;
+    max-height: 500px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    transition: 0.5s;
+}
+
+.uneVoiture.popUp .laCaisse {
+    overflow: hidden;
+}
+
+.uneVoiture.popUp .second, .uneMode.popUp .second, .unElectro.popUp .second {
+    height: 50%;
+    justify-content: space-evenly;
+}
+
+
+@media screen and (max-width: 1075px) {
+    .uneVoiture.popUp .laCaisse img, .unElectro.popUp .imgElectro img {
+        width: 300px;
+    }
+    .uneMode.popUp .imgMode img {
+        min-width: 240px !important;
+        max-height: 90%;
+    }
+
+    .uneVoiture.popUp, .uneMode.popUp, .unElectro.popUp {
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        gap: 10px;
+        padding: 10px;
+    }
+}
+
+#lesVoitures {
+    display: block;
+}
+
+.catMode, .catElectro {
+    display: flex;
+    /* flex-direction: row; */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 70px;
+}
+
+.uneMode, .unElectro {
+    border: 1px solid gray;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    transition: 0.4s;
+}
+.uneMode {
+    width: 320px;
+}
+.uneMode:hover, .unElectro:hover {
+    transform: scale(1.1, 1.05);
+    box-shadow: 0 0 10px gray,
+                0 0 30px #000000b3;
+}
+.uneMode .second, .unElectro .second {
+    padding: 7px;
+}
+.imgMode {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 240px;
+    min-height: 240px;
+    cursor: pointer;
+    background-color: rgba(200, 200, 200, 0.2);
+}
+.imgMode img {
+    width: 200px;
+    max-height: 250px;
+}
+
+.uneMode.popUp, .unElectro.popUp {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.uneMode.popUp .imgMode, .unElectro.popUp .imgElectro {
+    height: 90%;
+    display: flex;
+}
+
+.line {
+    width: 100%;
+}
+.uneMode.popUp .line, .unElectro.popUp .line {
+    display: none;
+}
+
+.imgElectro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.imgElectro img {
+    width: 315px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
