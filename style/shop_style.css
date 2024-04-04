@@ -31,6 +31,7 @@ header {
 }
 
 .descTop {
+    width: 80%;
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -44,13 +45,13 @@ header {
         transform: scale(1.1);
     }
     35%, 40% {
-        text-shadow: 0 0 30px #fff;
+        text-shadow: 0 0 25px #bbc2ee;
     }
     50%, 75% {
         transform: scale(0.95);
     }
     85%, 90% {
-        text-shadow: 0 0 30px #fff;
+        text-shadow: 0 0 30px #bbc2ee;
     }
     100% {
         transform: scale(1.1);
@@ -60,24 +61,29 @@ header {
     text-align: center;
     font-family: Calligraphy;
     font-size: 60px;
+    font-weight: lighter;
     letter-spacing: 1px;
+    backdrop-filter: blur(2px);
     animation: zommer 3s linear infinite;
 }
 @keyframes runner {
     0% {
-        transform: translateX(100%);
+        transform: translateX(98%);
     }
     100% {
-        transform: translateX(-100%);
+        transform: translateX(-98%);
     }
 }
 .descTop p {
     font-family: Montserrat;
-    letter-spacing: 1px;
+    letter-spacing: 0.6px;
     font-size: 30px;
     font-weight: 500;
     max-width: max-content;
-    animation: runner 18s linear alternate-reverse infinite;
+    text-wrap: nowrap;
+    overflow-x: hidden;
+    backdrop-filter: blur(5px);
+    animation: runner 20s linear infinite;
 }
 
 main {
@@ -118,21 +124,6 @@ main {
     background-color: #1F2039;
     color: #fff;
 }
-/* .shopTop li::after {
-    display: block;
-    content: '';
-    height: 3px;
-    background: #333;
-    margin: auto;
-    width: 10%;
-    opacity: 0.1;
-    transition: 0.3s;
-}
-.shopTop li:hover::after {
-    width: 90%;
-    opacity: 1;
-} */
-
 .enonce {
     /* display: flex; */
     margin: 0 0 100px;
@@ -201,6 +192,8 @@ main {
 .second h2 {
     font-family: Alex;
     letter-spacing: 1px;
+    /* font-size: 20px; */
+    font-weight: bold;
 }
 
 .lesbuttons {
@@ -242,21 +235,26 @@ main {
     color: #a00;
 }
 
-.second a {
-    padding: 5px 20px;
+ input {
+    display: none;
+}
+.second .acheter {
+    display: block !important;
+    padding: 5px 25px;
     font-weight: 500;
     font-family: Montserrat;
     color: #000;
     font-size: 20px;
     border-radius: 10px;
     border: 1px solid gray;
-    /* background-color: gray; */
-    transition: 0.5s;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-.second a:hover {
+.second .acheter:hover {
     background-color: gray;
     color: #fff;
+    transform: scale(1.06, 1.05);
 }
 
 .uneVoiture .fermer, .uneMode .fermer, .unElectro .fermer {
@@ -283,7 +281,7 @@ main {
     justify-content: center;
     gap: 150px;
     /* flex-wrap: wrap; */
-    background: rgba(250, 250, 250, 0.9);
+    background: rgba(210, 210, 210, 0.95);
     transition: 0.5s ease-out;
 }
 

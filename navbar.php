@@ -1,7 +1,6 @@
 
 <style>
     .active {
-        /* color: #fa5 !important; */
         color: #fa5 !important;
     }
     .active::after {
@@ -110,7 +109,11 @@
             <a href="apropos.php" <?php if ($link === 'propos'): ?> class="active" <?php endif; ?> >à propos</a>
         </li>
         <li>
+            <?php if(isset($_SESSION['id'])) { ?>
+                <a href="disconnect.php" class="active">Déconnexion</a>
+            <?php } else { ?>
             <a href="connexion.php" <?php if ($link === 'connexion'): ?> class="active" <?php endif; ?> >connexion</a>
+            <?php } ?>
         </li>
     </ul>
     <img src="images/icon-menu.svg" alt="" class="icomenu">

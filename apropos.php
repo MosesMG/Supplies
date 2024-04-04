@@ -1,3 +1,5 @@
+<?php session_start() ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,15 +52,15 @@
                 <form action="" method="get">
                     <div>
                         <label for="nom">Nom</label>
-                        <input type="text" name="nom" id="">
+                        <input type="text" name="nom" id="" required>
                     </div>
                     <div>
                         <label for="mail">Email</label>
-                        <input type="email" name="mail" id="">
+                        <input type="email" name="mail" id="" required>
                     </div>
                     <div>
                         <label for="texte">Votre message</label>
-                        <textarea name="texte" id="" cols="30" rows="5"></textarea>
+                        <textarea name="texte" id="" cols="30" rows="5" required></textarea>
                     </div>
                     <div>
                         <button type="submit">Envoyer</button>

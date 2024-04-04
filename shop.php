@@ -1,3 +1,11 @@
+<?php session_start();
+    if (isset($_SESSION['id'])){
+        $lenom = $_SESSION['prenom'];
+    } else {
+        $lenom = null;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -15,21 +23,28 @@
 
         <?php
             $link = 'shop';
+            include 'admin/datashop.php';
             include 'navbar.php';
         ?>
 
         <section class="descTop">
-            <h2 class="hTwo">Bienvenue sur notre boutique !</h2>
-            <p>Ici vous verrez touts nos produits classées dans leurs différentes catégories</p>
+            <h2 class="hTwo">Bienvenue sur notre boutique <?= $lenom ?> !</h2>
+            <p>Ici vous verrez tous nos produits classés dans leurs différentes catégories</p>
         </section>
     </header>
 
     <main>
-
+        <?php $category = $categories->fetchAll() ?>
         <ul class="shopTop">
-            <li id="lienVehicules">Véhicules</li>
-            <li id="lienMode">Mode</li>
-            <li id="lienElectro">électronique</li>
+            <li id="lienVehicules">
+                <?= $category[0][0] ?>
+            </li>
+            <li id="lienMode">
+                <?= $category[1][0] ?>
+            </li>
+            <li id="lienElectro">
+                <?= $category[2][0] ?>
+            </li>
         </ul>
 
         <div class="container">
@@ -39,335 +54,52 @@
                     <p>Catégorie Véhicules</p>
                 </div>
                 <div class="catVoiture">
-                    <div class="uneVoiture">
+
+                    <?php while ($caisse = $voitures->fetch()) { ?>
+
+                    <form class="uneVoiture" action="confirmation.php" method="post">
                         <div class="laCaisse">
-                            <img src="images/voitures/voit_1.jpg" alt="">
+                            <img src="images/voitures/<?= $caisse['imgart'] ?>" alt="">
+                            <input type="text" name="imgart" id="" value="<?= $caisse['imgart'] ?>">
                         </div>
                         <div class="second">
                             <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="images/moins.svg" alt="" class="moins">
-                                <span class="chiffre"></span>
-                                <img src="images/plus.svg" alt="" class="plus">
+                                <h2><?= $caisse['nomart'] ?></h2>
+                                <input type="text" name="nomart" id="" value="<?= $caisse['nomart'] ?>">
                             </div>
                             <div class="leprix">
-                                <span>8500</span>€
+                                <span><?= $caisse['prixart'] ?></span>€
+                                <input type="text" name="prixart" id="" value="<?= $caisse['prixart'] ?>">
                             </div>
                             <div>
-                                <a href="hola.php">Acheter</a>
+                                <input type="submit" value="Achter" class="acheter">
                             </div>
                             <p class="fermer">Cliquez dans cet espace pour fermer</p>
                         </div>
-                    </div>
-                    <div class="uneVoiture">
-                        <div class="laCaisse">
-                            <img src="images/voitures/voit_2.jpg" alt="">
-                        </div>
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="images/moins.svg" alt="" class="moins">
-                                <span class="chiffre"></span>
-                                <img src="images/plus.svg" alt="" class="plus">
-                            </div>
-                            <div class="leprix">
-                                <span>8500</span>€
-                            </div>
-                            <div>
-                                <a href="hola.php">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquez dans cet espace pour fermer</p>
-                        </div>
-                    </div>
-                    <div class="uneVoiture">
-                        <div class="laCaisse">
-                            <img src="images/voitures/voit_3.jpg" alt="">
-                        </div>
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="images/moins.svg" alt="" class="moins">
-                                <span class="chiffre"></span>
-                                <img src="images/plus.svg" alt="" class="plus">
-                            </div>
-                            <div class="leprix">
-                                <span>8500</span>€
-                            </div>
-                            <div>
-                                <a href="hola.php">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquez dans cet espace pour fermer</p>
-                        </div>
-                    </div>
-                    <div class="uneVoiture">
-                        <div class="laCaisse">
-                            <img src="images/voitures/voit_4.jpg" alt="">
-                        </div>
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="images/moins.svg" alt="" class="moins">
-                                <span class="chiffre"></span>
-                                <img src="images/plus.svg" alt="" class="plus">
-                            </div>
-                            <div class="leprix">
-                                <span>8500</span>€
-                            </div>
-                            <div>
-                                <a href="hola.php">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquez dans cet espace pour fermer</p>
-                        </div>
-                    </div>
-                    <div class="uneVoiture">
-                        <div class="laCaisse">
-                            <img src="images/voitures/voit_5.jpg" alt="">
-                        </div>
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="images/moins.svg" alt="" class="moins">
-                                <span class="chiffre"></span>
-                                <img src="images/plus.svg" alt="" class="plus">
-                            </div>
-                            <div class="leprix">
-                                <span>8500</span>€
-                            </div>
-                            <div>
-                                <a href="hola.php">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquez dans cet espace pour fermer</p>
-                        </div>
-                    </div>
-                    <div class="uneVoiture">
-                        <div class="laCaisse">
-                            <img src="images/voitures/voit_6.jpg" alt="">
-                        </div>
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="images/moins.svg" alt="" class="moins">
-                                <span class="chiffre"></span>
-                                <img src="images/plus.svg" alt="" class="plus">
-                            </div>
-                            <div class="leprix">
-                                <span>8500</span>€
-                            </div>
-                            <div>
-                                <a href="hola.php">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquez dans cet espace pour fermer</p>
-                        </div>
-                    </div>
-                    <div class="uneVoiture">
-                        <div class="laCaisse">
-                            <img src="images/voitures/voit_7.jpg" alt="">
-                        </div>
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="images/moins.svg" alt="" class="moins">
-                                <span class="chiffre"></span>
-                                <img src="images/plus.svg" alt="" class="plus">
-                            </div>
-                            <div class="leprix">
-                                <span>8500</span>€
-                            </div>
-                            <div>
-                                <a href="hola.php">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquez dans cet espace pour fermer</p>
-                        </div>
-                    </div>
-                    <div class="uneVoiture">
-                        <div class="laCaisse">
-                            <img src="images/voitures/voit_8.jpg" alt="">
-                        </div>
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="images/moins.svg" alt="" class="moins">
-                                <span class="chiffre"></span>
-                                <img src="images/plus.svg" alt="" class="plus">
-                            </div>
-                            <div class="leprix">
-                                <span>8500</span>€
-                            </div>
-                            <div>
-                                <a href="hola.php">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquez dans cet espace pour fermer</p>
-                        </div>
-                    </div>
-                    <div class="uneVoiture">
-                        <div class="laCaisse">
-                            <img src="images/voitures/voit_9.jpg" alt="">
-                        </div>
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="images/moins.svg" alt="" class="moins">
-                                <span class="chiffre"></span>
-                                <img src="images/plus.svg" alt="" class="plus">
-                            </div>
-                            <div class="leprix">
-                                <span>8500</span>€
-                            </div>
-                            <div>
-                                <a href="hola.php">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquez dans cet espace pour fermer</p>
-                        </div>
-                    </div>
-                    <div class="uneVoiture">
-                        <div class="laCaisse">
-                            <img src="images/voitures/voit_10.jpg" alt="">
-                        </div>
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="images/moins.svg" alt="" class="moins">
-                                <span class="chiffre"></span>
-                                <img src="images/plus.svg" alt="" class="plus">
-                            </div>
-                            <div class="leprix">
-                                <span>8500</span>€
-                            </div>
-                            <div>
-                                <a href="hola.php">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquez dans cet espace pour fermer</p>
-                        </div>
-                    </div>
-                    <div class="uneVoiture">
-                        <div class="laCaisse">
-                            <img src="images/voitures/voit_11.jpg" alt="">
-                        </div>
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="images/moins.svg" alt="" class="moins">
-                                <span class="chiffre"></span>
-                                <img src="images/plus.svg" alt="" class="plus">
-                            </div>
-                            <div class="leprix">
-                                <span>8500</span>€
-                            </div>
-                            <div>
-                                <a href="hola.php">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquez dans cet espace pour fermer</p>
-                        </div>
-                    </div>
-                    <div class="uneVoiture">
-                        <div class="laCaisse">
-                            <img src="images/voitures/voit_12.jpg" alt="">
-                        </div>
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="images/moins.svg" alt="" class="moins">
-                                <span class="chiffre"></span>
-                                <img src="images/plus.svg" alt="" class="plus">
-                            </div>
-                            <div class="leprix">
-                                <span>8500</span>€
-                            </div>
-                            <div>
-                                <a href="hola.php">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquez dans cet espace pour fermer</p>
-                        </div>
-                    </div>
+                    </form>
+
+                    <?php }  $voitures->closeCursor(); ?>
                 </div>
             </section>
-
 
             <section id="laMode" style="display: none;">
                 <div class="enonce">
                     <p>Catégorie Mode</p>
                 </div>
                 <div class="catMode">
-                    <div class="uneMode">
-                        <div class="imgMode">
-                            <img src="images/mode/mod1.png" alt="">
-                        </div>
-                        <hr class="line">
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="" alt="">
-                                <span></span>
-                                <img src="" alt="">
-                            </div>
-                            <div class="leprix">
-                                <span>250</span>€
-                            </div>
-                            <div>
-                                <a href="">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquer dans l'espace pour fermer</p>
-                        </div>
-                    </div>
 
-                    <div class="uneMode">
-                        <div class="imgMode">
-                            <img src="images/mode/mod2.png" alt="">
-                        </div>
-                        <hr class="line">
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="" alt="">
-                                <span></span>
-                                <img src="" alt="">
-                            </div>
-                            <div class="leprix">
-                                <span>250</span>€
-                            </div>
-                            <div>
-                                <a href="">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquer dans l'espace pour fermer</p>
-                        </div>
-                    </div>
+                    <?php while ($mode = $bijoux->fetch()) { ?>
 
-                    <div class="uneMode">
+                    <form class="uneMode" action="confirmation.php" method="post">
                         <div class="imgMode">
-                            <img src="images/mode/mod3.png" alt="">
+                            <img src="images/mode/<?= $mode['imgart']?>" alt="">
+                            <input type="text" name="imgart" id="" value="<?= $mode['imgart'] ?>">
                         </div>
                         <hr class="line">
                         <div class="second">
                             <div>
-                                <h2>Le nom</h2>
+                                <h2><?= $mode['nomart'] ?></h2>
+                                <input type="text" name="nomart" id="" value="<?= $mode['nomart'] ?>">
                             </div>
                             <div class="lesbuttons">
                                 <img src="" alt="">
@@ -375,230 +107,17 @@
                                 <img src="" alt="">
                             </div>
                             <div class="leprix">
-                                <span>250</span>€
+                                <span><?= $mode['prixart'] ?></span>€
+                                <input type="text" name="prixart" id="" value="<?= $mode['prixart'] ?>">
                             </div>
                             <div>
-                                <a href="">Acheter</a>
+                                <input type="submit" value="Achter" class="acheter">
                             </div>
                             <p class="fermer">Cliquer dans l'espace pour fermer</p>
                         </div>
-                    </div>
+                    </form>
 
-                    <div class="uneMode">
-                        <div class="imgMode">
-                            <img src="images/mode/mod4.png" alt="">
-                        </div>
-                        <hr class="line">
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="" alt="">
-                                <span></span>
-                                <img src="" alt="">
-                            </div>
-                            <div class="leprix">
-                                <span>250</span>€
-                            </div>
-                            <div>
-                                <a href="">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquer dans l'espace pour fermer</p>
-                        </div>
-                    </div>
-
-                    <div class="uneMode">
-                        <div class="imgMode">
-                            <img src="images/mode/mod5.png" alt="">
-                        </div>
-                        <hr class="line">
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="" alt="">
-                                <span></span>
-                                <img src="" alt="">
-                            </div>
-                            <div class="leprix">
-                                <span>250</span>€
-                            </div>
-                            <div>
-                                <a href="">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquer dans l'espace pour fermer</p>
-                        </div>
-                    </div>
-
-                    <div class="uneMode">
-                        <div class="imgMode">
-                            <img src="images/mode/mod6.png" alt="">
-                        </div>
-                        <hr class="line">
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="" alt="">
-                                <span></span>
-                                <img src="" alt="">
-                            </div>
-                            <div class="leprix">
-                                <span>250</span>€
-                            </div>
-                            <div>
-                                <a href="">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquer dans l'espace pour fermer</p>
-                        </div>
-                    </div>
-
-                    <div class="uneMode">
-                        <div class="imgMode">
-                            <img src="images/mode/mod7.png" alt="">
-                        </div>
-                        <hr class="line">
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="" alt="">
-                                <span></span>
-                                <img src="" alt="">
-                            </div>
-                            <div class="leprix">
-                                <span>250</span>€
-                            </div>
-                            <div>
-                                <a href="">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquer dans l'espace pour fermer</p>
-                        </div>
-                    </div>
-
-                    <div class="uneMode">
-                        <div class="imgMode">
-                            <img src="images/mode/mod8.png" alt="">
-                        </div>
-                        <hr class="line">
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="" alt="">
-                                <span></span>
-                                <img src="" alt="">
-                            </div>
-                            <div class="leprix">
-                                <span>250</span>€
-                            </div>
-                            <div>
-                                <a href="">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquer dans l'espace pour fermer</p>
-                        </div>
-                    </div>
-
-                    <div class="uneMode">
-                        <div class="imgMode">
-                            <img src="images/mode/mod9.png" alt="">
-                        </div>
-                        <hr class="line">
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="" alt="">
-                                <span></span>
-                                <img src="" alt="">
-                            </div>
-                            <div class="leprix">
-                                <span>250</span>€
-                            </div>
-                            <div>
-                                <a href="">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquer dans l'espace pour fermer</p>
-                        </div>
-                    </div>
-
-                    <div class="uneMode">
-                        <div class="imgMode">
-                            <img src="images/mode/mod10.png" alt="">
-                        </div>
-                        <hr class="line">
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="" alt="">
-                                <span></span>
-                                <img src="" alt="">
-                            </div>
-                            <div class="leprix">
-                                <span>250</span>€
-                            </div>
-                            <div>
-                                <a href="">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquer dans l'espace pour fermer</p>
-                        </div>
-                    </div>
-
-                    <div class="uneMode">
-                        <div class="imgMode">
-                            <img src="images/mode/mod11.png" alt="">
-                        </div>
-                        <hr class="line">
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="" alt="">
-                                <span></span>
-                                <img src="" alt="">
-                            </div>
-                            <div class="leprix">
-                                <span>250</span>€
-                            </div>
-                            <div>
-                                <a href="">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquer dans l'espace pour fermer</p>
-                        </div>
-                    </div>
-
-                    <div class="uneMode">
-                        <div class="imgMode">
-                            <img src="images/mode/mod12.png" alt="">
-                        </div>
-                        <hr class="line">
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="" alt="">
-                                <span></span>
-                                <img src="" alt="">
-                            </div>
-                            <div class="leprix">
-                                <span>250</span>€
-                            </div>
-                            <div>
-                                <a href="">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquer dans l'espace pour fermer</p>
-                        </div>
-                    </div>
+                    <?php } $bijoux->closeCursor(); ?>
 
                 </div>
             </section>
@@ -608,62 +127,19 @@
                     <p>Catégorie Électronique</p>
                 </div>
                 <div class="catElectro">
-                    <div class="unElectro">
-                        <div class="imgElectro">
-                            <img src="images/electro/electro_1.jpg" alt="">
-                        </div>
-                        <hr class="line">
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="" alt="">
-                                <span></span>
-                                <img src="" alt="">
-                            </div>
-                            <div class="leprix">
-                                <span>1500</span>€
-                            </div>
-                            <div>
-                                <a href="">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquer dans l'espace pour fermer</p>
-                        </div>
-                    </div>
 
-                    <div class="unElectro">
-                        <div class="imgElectro">
-                            <img src="images/electro/electro_2.jpg" alt="">
-                        </div>
-                        <hr class="line">
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="" alt="">
-                                <span></span>
-                                <img src="" alt="">
-                            </div>
-                            <div class="leprix">
-                                <span>1500</span>€
-                            </div>
-                            <div>
-                                <a href="">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquer dans l'espace pour fermer</p>
-                        </div>
-                    </div>
+                    <?php while ($tech = $electro->fetch()) { ?>
 
-                    <div class="unElectro">
+                    <form class="unElectro" action="confirmation.php" method="post">
                         <div class="imgElectro">
-                            <img src="images/electro/electro_3.jpg" alt="">
+                            <img src="images/electro/<?= $tech['imgart'] ?>" alt="">
+                            <input type="text" name="imgart" id="" value="<?= $tech['imgart'] ?>">
                         </div>
                         <hr class="line">
                         <div class="second">
                             <div>
-                                <h2>Le nom</h2>
+                                <h2><?= $tech['nomart'] ?></h2>
+                                <input type="text" name="nomart" id="" value="<?= $tech['nomart'] ?>">
                             </div>
                             <div class="lesbuttons">
                                 <img src="" alt="">
@@ -671,236 +147,21 @@
                                 <img src="" alt="">
                             </div>
                             <div class="leprix">
-                                <span>1500</span>€
+                                <span><?= $tech['prixart'] ?></span>€
+                                <input type="text" name="prixart" id="" value="<?= $tech['prixart'] ?>">
                             </div>
                             <div>
-                                <a href="">Acheter</a>
+                                <input type="submit" value="Achter" class="acheter">
                             </div>
                             <p class="fermer">Cliquer dans l'espace pour fermer</p>
                         </div>
-                    </div>
+                    </form>
 
-                    <div class="unElectro">
-                        <div class="imgElectro">
-                            <img src="images/electro/electro_4.jpg" alt="">
-                        </div>
-                        <hr class="line">
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="" alt="">
-                                <span></span>
-                                <img src="" alt="">
-                            </div>
-                            <div class="leprix">
-                                <span>1500</span>€
-                            </div>
-                            <div>
-                                <a href="">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquer dans l'espace pour fermer</p>
-                        </div>
-                    </div>
-
-                    <div class="unElectro">
-                        <div class="imgElectro">
-                            <img src="images/electro/electro_5.jpg" alt="">
-                        </div>
-                        <hr class="line">
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="" alt="">
-                                <span></span>
-                                <img src="" alt="">
-                            </div>
-                            <div class="leprix">
-                                <span>1500</span>€
-                            </div>
-                            <div>
-                                <a href="">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquer dans l'espace pour fermer</p>
-                        </div>
-                    </div>
-
-                    <div class="unElectro">
-                        <div class="imgElectro">
-                            <img src="images/electro/electro_6.jpg" alt="">
-                        </div>
-                        <hr class="line">
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="" alt="">
-                                <span></span>
-                                <img src="" alt="">
-                            </div>
-                            <div class="leprix">
-                                <span>1500</span>€
-                            </div>
-                            <div>
-                                <a href="">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquer dans l'espace pour fermer</p>
-                        </div>
-                    </div>
-
-                    <div class="unElectro">
-                        <div class="imgElectro">
-                            <img src="images/electro/electro_7.jpg" alt="">
-                        </div>
-                        <hr class="line">
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="" alt="">
-                                <span></span>
-                                <img src="" alt="">
-                            </div>
-                            <div class="leprix">
-                                <span>1500</span>€
-                            </div>
-                            <div>
-                                <a href="">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquer dans l'espace pour fermer</p>
-                        </div>
-                    </div>
-
-                    <div class="unElectro">
-                        <div class="imgElectro">
-                            <img src="images/electro/electro_8.jpg" alt="">
-                        </div>
-                        <hr class="line">
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="" alt="">
-                                <span></span>
-                                <img src="" alt="">
-                            </div>
-                            <div class="leprix">
-                                <span>1500</span>€
-                            </div>
-                            <div>
-                                <a href="">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquer dans l'espace pour fermer</p>
-                        </div>
-                    </div>
-
-                    <div class="unElectro">
-                        <div class="imgElectro">
-                            <img src="images/electro/electro_9.jpg" alt="">
-                        </div>
-                        <hr class="line">
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="" alt="">
-                                <span></span>
-                                <img src="" alt="">
-                            </div>
-                            <div class="leprix">
-                                <span>1500</span>€
-                            </div>
-                            <div>
-                                <a href="">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquer dans l'espace pour fermer</p>
-                        </div>
-                    </div>
-
-                    <div class="unElectro">
-                        <div class="imgElectro">
-                            <img src="images/electro/electro_10.jpg" alt="">
-                        </div>
-                        <hr class="line">
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="" alt="">
-                                <span></span>
-                                <img src="" alt="">
-                            </div>
-                            <div class="leprix">
-                                <span>1500</span>€
-                            </div>
-                            <div>
-                                <a href="">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquer dans l'espace pour fermer</p>
-                        </div>
-                    </div>
-
-                    <div class="unElectro">
-                        <div class="imgElectro">
-                            <img src="images/electro/electro_11.jpg" alt="">
-                        </div>
-                        <hr class="line">
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="" alt="">
-                                <span></span>
-                                <img src="" alt="">
-                            </div>
-                            <div class="leprix">
-                                <span>1500</span>€
-                            </div>
-                            <div>
-                                <a href="">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquer dans l'espace pour fermer</p>
-                        </div>
-                    </div>
-
-                    <div class="unElectro">
-                        <div class="imgElectro">
-                            <img src="images/electro/electro_12.jpg" alt="">
-                        </div>
-                        <hr class="line">
-                        <div class="second">
-                            <div>
-                                <h2>Le nom</h2>
-                            </div>
-                            <div class="lesbuttons">
-                                <img src="" alt="">
-                                <span></span>
-                                <img src="" alt="">
-                            </div>
-                            <div class="leprix">
-                                <span>1500</span>€
-                            </div>
-                            <div>
-                                <a href="">Acheter</a>
-                            </div>
-                            <p class="fermer">Cliquer dans l'espace pour fermer</p>
-                        </div>
-                    </div>
+                    <?php } $electro->closeCursor(); ?>
 
                 </div>
             </section>
-
         </div>
-
     </main>
 
     <?php include 'footer.php' ?>

@@ -1,3 +1,11 @@
+<?php session_start();
+    if(isset($_SESSION['id'])){
+        header("Location: index.php");
+        exit;
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,8 +24,8 @@
     <header>
 
         <?php
-        $link = 'connexion';
-        include 'navbar.php'
+            $link = 'connexion';
+            include 'navbar.php'
         ?>
 
         <section class="texTop">
@@ -30,17 +38,17 @@
         <div id="connexion">
             <form action="check_connect.php" method="POST">
                 <div>
-                    <label for="userid">Email</label>
-                    <input type="email" name="userid" id="" required>
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="" required>
                 </div>
                 <div class="passWd">
                     <label for="pass">Mot de passe</label>
-                    <input type="password" name="pass" id="passwordOne" required>
+                    <input type="password" name="passwd" id="passwordOne" required>
                     <img src="images/icon-visible.png" alt="" class="show" id="showOne">
                     <img src="images/icon-invisible.png" alt="" class="noshow" id="noshowOne">
                 </div>
                 <div>
-                    <button type="submit">Se connecter</button>
+                    <input type="submit" value="Se connecter" name="submit" id="submit">
                 </div>
                 <div class="notyet">
                     <p>Pas de compte ?</p>
@@ -53,7 +61,7 @@
             <form action="check_inscrip.php" method="POST">
                 <div>
                     <label for="nom">Nom</label>
-                    <input type="text" name="userid" id="" required>
+                    <input type="text" name="nom" id="leNom" required>
                 </div>
                 <div>
                     <label for="prenom">Prénom(s)</label>
@@ -75,8 +83,9 @@
                     <img src="images/icon-visible.png" alt="" class="show" id="showThree">
                     <img src="images/icon-invisible.png" alt="" class="noshow" id="noshowThree">
                 </div>
+                <p id="different"></p>
                 <div>
-                    <button type="submit">S'enregistrer</button>
+                    <input type="submit" value="S'enregistrer" name="submit" id="submit" class="envoyer">
                 </div>
                 <div class="notyet">
                     <p>Déjà inscrit ?</p>

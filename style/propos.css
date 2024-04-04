@@ -120,6 +120,9 @@ form input, form textarea {
     letter-spacing: 1px;
     transition: 0.5s;
 }
+textarea {
+    resize: none;
+}
 form input {
     height: 32px;
 }

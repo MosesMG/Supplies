@@ -1,3 +1,4 @@
+// const { text } = require("stream/consumers")
 
 const connexion = document.getElementById("connexion")
 const inscription = document.getElementById("inscription")
@@ -65,4 +66,26 @@ invisibleThree.addEventListener('click', ()=> {
     passThree.type = "password";
     visibleThree.style.display = "block";
     invisibleThree.style.display = "none"
+})
+
+
+const different = document.getElementById("different")
+const submit = document.querySelector(".envoyer")
+
+passThree.addEventListener('input', ()=> {
+    if (passTwo.value !== passThree.value) {
+        different.style.display = "block";
+        different.innerHTML = "Mots de passe différents !"
+        submit.disabled = true
+        submit.classList.add("block")
+    } else {
+        different.style.display = "none";
+        submit.disabled = false
+        submit.classList.remove("block")
+    }
+})
+
+const leNom = document.getElementById("leNom")
+leNom.addEventListener("input", ()=> {
+    leNom.value = leNom.value.toUpperCase();
 })

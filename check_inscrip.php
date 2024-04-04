@@ -1,14 +1,36 @@
 <?php
 
-try {
-    $bde = new PDO('mysql:host=localhost;dbname=thesupplies', 'root', '');
+require 'admin/database.php';
+
+if ($_POST['submit']) {
+
+    $nom = htmlspecialchars($_POST['nom']);
+    $prenom = htmlspecialchars($_POST['prenom']);
+    $email = htmlspecialchars($_POST['email']);
+    $motpas = htmlspecialchars($_POST['pass']);
+
+    if (isset($nom) && isset($prenom) && isset($email) && isset($motpas)) {
+        $inserClt = $dbase->prepare('INSERT INTO client(nomclt, prenomclt, emailclt, motpas) VALUES (:nom, :prenom, :email, :pass)');
+        $inserClt->execute([
+            'nom' => $nom,
+            'prenom' => $prenom,
+            'email' => $email,
+            'pass' => $motpas
+        ]);
+
+        echo '<script>
+                alert("Inscription effectuée avec succès !")
+                window.location.replace("connexion.php")
+            </script>';
+    }
+    else {
+        echo '<script>
+                alert("Inscription echouée !")
+                window.location.replace("connexion.php")
+            </script>';
+    }
 }
-catch(Exception $e) {
-    die('Erreur : '.$e->getMessage());
+else {
+    header("Location: connexion.php");
+    exit;
 }
-
-
-$req = $bde->prepare('INSERT INTO vendeur(nom, prenom, email, mot2pass) VALUES (?, ?, ?, ?)');
-$req->execute([$_POST['userid'], $_POST['prenom'], $_POST['email'], $_POST['pass']]);
-
-echo "<h2>Enregistrement effectué!</h2>";

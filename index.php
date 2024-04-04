@@ -1,3 +1,5 @@
+<?php session_start() ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -47,21 +49,6 @@
                     <p>Mode & Beauté</p>
                     <a href="shop.php">Explorer</a>
                 </li>
-                <!-- <li>
-                    <img src="images/kid1.png" alt="">
-                    <p>Pour enfants</p>
-                    <a href="">Explorer</a>
-                </li>
-                <li>
-                    <img src="images/sport1.jpg" alt="">
-                    <p>Sport & Loisirs</p>
-                    <a href="">Explorer</a>
-                </li>
-                <li>
-                    <img src="images/electro1.jpg" alt="">
-                    <p>électroménager</p>
-                    <a href="">Explorer</a>
-                </li> -->
             </ul>
         </div>
     </main>
