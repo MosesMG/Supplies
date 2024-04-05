@@ -2,7 +2,9 @@
 
 require 'database.php';
 
-$lesClient = $dbase->query('SELECT * FROM client');
+$lesArticles = $dbase->query('SELECT * FROM article, categorie
+                            WHERE categorie.idcateg = article.idcateg');
+
 ?>
 
 <!DOCTYPE html>
@@ -12,31 +14,75 @@ $lesClient = $dbase->query('SELECT * FROM client');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page administration</title>
     <link rel="icon" href="../images/icon-administrateur-homme.png">
-    <!-- <link rel="stylesheet" href="../style/infos.css"> -->
+    <link rel="stylesheet" href="../style/manager.css">
 </head>
 <body>
 
-    <div>
-        <h2>Liste des commandes</h2>
+    <h2>Liste de tous les articles en vente</h2>
+
+    <div class="container">
+        <div class="lesbtns">
+            <a href="artadd.php" class="addbtn"><img src="../images/icon-plus.png">Ajouter</a>
+            <a href="../index.php" class="addbtn"><img src="../images/icon-accueil.png" alt="">Accueil</a>
+        </div>
+        
+        <table>
+            <tr>
+                <th>Nom</th>
+                <th>Prix</th>
+                <th>Catégorie</th>
+                <th>Image</th>
+                <th>Modifier</th>
+                <th>Supprimer</th>
+            </tr>
+            <?php 
+                if(($lesArticles) == 0){
+                    // S'il n'y a plus d'articles
+                    echo "Il n'y a plus d'articles à vendre !" ;
+                    
+                } else {
+                    // Affichage de la liste de tous les articles
+                    
+                    while($article = $lesArticles->fetch()){
+                        if (str_starts_with($article['imgart'], "voit")) {
+                            $image = '../images/voitures/'.$article['imgart'];
+                        }
+                        elseif (str_starts_with($article['imgart'], "mod")) {
+                            $image = '../images/mode/'.$article['imgart'];
+                        }
+                        else {
+                            $image = '../images/electro/'.$article['imgart'];
+                        }
+                ?>
+            <tr>
+                <td>
+                    <?= $article['nomart'] ?>
+                </td>
+                <td>
+                    <?= $article['prixart'] ?>€
+                </td>
+                <td>
+                    <?= $article['libcateg'] ?>
+                </td>
+                <td>
+                    <img src="<?= $image ?>" alt="">
+                </td>
+                <td class="petits">
+                    <a href="artupdate.php?id=<?= $article['idart'] ?>"><img src="../images/pen.png"></a>
+                </td>
+                <td class="petits">
+                    <a href="artdelete.php?id=<?= $article['idart'] ?>"><img src="../images/trash.png"></a>
+                </td>
+            </tr>
+            <?php
+                }      
+                $lesArticles->closeCursor();
+            }
+            ?>
+         
+        </table>
+   
     </div>
-    <table>
-        <tr>
-            <th>Nom</th>
-            <th>Prénom(s)</th>
-            <th>Email</th>
-            <th>Commande</th>
-        </tr>
-    <?php while($client = $lesClient->fetch()) { ?>
-        <tr>
-            <td><?= $client['nomclt'] ?></td>
-            <td><?= $client['prenomclt'] ?></td>
-            <td><?= $client['emailclt'] ?></td>
-            <td></td>
-        </tr>
-    <?php } ?>
-    </table>
-
-    <?php $lesClient->closeCursor(); ?>
-
+    
 </body>
 </html>

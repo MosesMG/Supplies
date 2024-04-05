@@ -47,7 +47,4 @@ else {
     exit;
 }
 
-
-// var_dump($theUser);
-// var_dump($theMails);
 ?>
