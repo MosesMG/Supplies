@@ -23,6 +23,7 @@ $lesArticles = $dbase->query('SELECT * FROM article, categorie
     <div class="container">
         <div class="lesbtns">
             <a href="artadd.php" class="addbtn"><img src="../images/icon-plus.png">Ajouter</a>
+            <a href="commandes.php" class="addbtn"><img src="../images/icon-liste-de-vérification.png" alt="">Commandes</a>
             <a href="../index.php" class="addbtn"><img src="../images/icon-accueil.png" alt="">Accueil</a>
         </div>
         

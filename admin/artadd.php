@@ -1,6 +1,4 @@
-<?php
-require 'database.php';
-?>
+<?php require 'database.php'; ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -25,18 +23,25 @@ require 'database.php';
 
             if (isset($nom) && isset($prix) && isset($image)) {
                 if (in_array((pathinfo($image)['extension']), ['jpg', 'jpeg', 'png', 'gif'])){
-                    $ajouter = $dbase->query("INSERT INTO article VALUES (null, '$nom', '$prix', '$image', '$idcateg')");
+                    $ajouter = $dbase->prepare('INSERT INTO article VALUES (null, :nomart, :prixart, :imgart, :idcateg)');
+                    $ajouter->execute([
+                        'nomart' => $nom,
+                        'prixart' => $prix,
+                        'imgart' => $image,
+                        'idcateg' =>$idcateg
+                    ]);
 
                     if ($ajouter) {
-                        header("Location: manager.php");
+                        echo '<script>alert("Article ajouté avec succès !")
+                                window.location.replace("manager")</script>';
                     }
                     else {
-                        $erreur = "Article NON ajouté !";
+                        $erreur = '<script>alert("Article NON ajouté !")</script>';
                     }
                 }    
             }
             else {
-                $erreur = "Veuillez remplir tous les champs !";
+                $erreur = '<script>alert("Veuillez remplir tous les champs !")</script>';
             }
         }
     ?>
@@ -67,7 +72,7 @@ require 'database.php';
             </div>
             <div>
                 <label for="image">Image :</label>
-                <input type="file" name="image" id="" value="" required>
+                <input type="file" name="image" id="" required>
             </div>
             <div>
                 <label for="categ">Catégorie :</label>
@@ -84,7 +89,7 @@ require 'database.php';
                 </select>
             </div>
             <div class="boutons">
-                <input type="submit" value="Ajouter">
+                <input type="submit" value="Ajouter" name="submit">
                 <input type="reset" value="Annuler">
             </div>
         </form>
