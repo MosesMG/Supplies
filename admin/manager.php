@@ -5,6 +5,14 @@ require 'database.php';
 $lesArticles = $dbase->query('SELECT * FROM article, categorie
                             WHERE categorie.idcateg = article.idcateg');
 
+
+if(isset($_POST['userid']) && isset($_POST['pass'])){
+    if(($_POST['userid'] !== 'admin') || ($_POST['pass'] !== 'admin')){
+        echo '<script>alert("Identifiant et/ou mot de passe incorrect(s) !")
+                window.location.replace("index.html")</script>';
+    }
+}
+
 ?>
 
 <!DOCTYPE html>

@@ -1,4 +1,8 @@
-<?php require 'database.php'; ?>
+<?php
+require 'database.php';
+require 'fonctions.php';
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -21,22 +25,51 @@
             $image = $_FILES['image']['name'];
             $idcateg = htmlspecialchars($_POST['categ']);
 
-            if (isset($nom) && isset($prix) && isset($image)) {
-                if (in_array((pathinfo($image)['extension']), ['jpg', 'jpeg', 'png', 'gif'])){
-                    $ajouter = $dbase->prepare('INSERT INTO article VALUES (null, :nomart, :prixart, :imgart, :idcateg)');
-                    $ajouter->execute([
-                        'nomart' => $nom,
-                        'prixart' => $prix,
-                        'imgart' => $image,
-                        'idcateg' =>$idcateg
-                    ]);
+            $ext = pathinfo($_FILES['image']['name'])['extension'];
 
-                    if ($ajouter) {
-                        echo '<script>alert("Article ajouté avec succès !")
+            switch ($idcateg) {
+                case 1:
+                    $path = '../images/voitures/';
+                    $categ = 'voit';
+                    $nomImg = basename(renameCaisse($categ).'.'.$ext);  
+                    break;
+                case 2:
+                    $path = '../images/mode/';
+                    $categ = 'mode';
+                    $nomImg = basename(renameMode($categ).'.'.$ext);
+                    break;
+                case 3:
+                    $path = '../images/electro/';
+                    $categ = 'electro';
+                    $nomImg = basename(renameElectro($categ).'.'.$ext);
+                    break;
+                default:
+                    header('Location: manager.php');
+                    break;
+            }
+
+
+            if (isset($nom) && isset($prix) && isset($image)) {
+                if (($_FILES['image']['error'] == 0) && ($_FILES['image']['size'] < 1000000) && (in_array(($ext), ['jpg', 'jpeg', 'png', 'gif']))){
+                    if ($_FILES['image']['size'] < 1000000) {
+
+                        move_uploaded_file($_FILES['image']['tmp_name'], $path.$nomImg);
+
+                        $ajouter = $dbase->prepare('INSERT INTO article VALUES (null, :nomart, :prixart, :imgart, :idcateg)');
+                        $ajouter->execute([
+                            'nomart' => $nom,
+                            'prixart' => $prix,
+                            'imgart' => $image,
+                            'idcateg' =>$idcateg
+                        ]);
+
+                        if ($ajouter) {
+                            echo '<script>alert("Article ajouté avec succès !")
                                 window.location.replace("manager")</script>';
-                    }
-                    else {
-                        $erreur = '<script>alert("Article NON ajouté !")</script>';
+                        }
+                        else {
+                            $erreur = '<script>alert("Article NON ajouté !")</script>';
+                        }
                     }
                 }    
             }
@@ -78,7 +111,7 @@
                 <label for="categ">Catégorie :</label>
                 <select name="categ" id="">
                     <option value="<?= $categ[0][0] ?>">
-                        <?= $categ[0][1] ?>
+                        <?= $categ[0][1] ?> 
                     </option>
                     <option value="<?= $categ[1][0] ?>">
                         <?= $categ[1][1] ?>

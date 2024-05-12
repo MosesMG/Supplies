@@ -72,9 +72,18 @@ form #buttons a {
   padding: 5px 25px;
   letter-spacing: 0.8px;
 }
+form #buttons :first-child:hover {
+  background: rgba(255, 255, 255, 0.8);
+  color: #0b0;
+}
+form #buttons :nth-child(2):hover {
+  background: rgba(255, 255, 255, 0.8);
+  color: #b00;
+}
 
 #buttons * {
   border: 1px solid #aaa;
   padding: 7px 15px;
   cursor: pointer;
+  transition: 0.3s;
 }

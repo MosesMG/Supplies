@@ -73,10 +73,21 @@ form {
             padding: 5px 25px;
             letter-spacing: 0.8px;
         }
+
+        & :first-child:hover {
+            background: #ffffffcc;
+            color: #0b0;
+        }
+
+        & :nth-child(2):hover {
+            background: #ffffffcc;
+            color: #b00;
+        }
     }
 }
 #buttons * {
     border: 1px solid #aaa;
     padding: 7px 15px;
     cursor: pointer;
+    transition: 0.3s;
 }
